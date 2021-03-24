@@ -10,7 +10,9 @@ public class Minimax {
         var actions = available(state);
 
         for (var a : actions) {
+
             state.move(a, 1);
+
             var r = min(state);
 
             if (r == 1) {
@@ -30,24 +32,11 @@ public class Minimax {
         var v = Integer.MIN_VALUE;
 
         for (var a : available(state)) {
-            var s = new State(copy(state.getBoard()));
-            s.move(a, 1);
-            v = Math.max(v, min(s));
+            state.move(a, 1);
+            v = Math.max(v, min(state));
         }
 
         return v;
-    }
-
-    private int[][] copy(int[][] x) {
-        int[][] b = new int[x.length][x.length];
-
-        for (int i = 0; i < x.length; i++) {
-            for (int j = 0; j < x[i].length; j++) {
-                b[i][j] = x[i][j];
-            }
-        }
-
-        return b;
     }
 
     private int min(State state) {
@@ -58,9 +47,8 @@ public class Minimax {
         var v = Integer.MAX_VALUE;
 
         for (var a : available(state)) {
-            var s = new State(copy(state.getBoard()));
-            s.move(a, -1);
-            v = Math.min(v, max(s));
+            state.move(a, -1);
+            v = Math.min(v, max(state));
         }
 
         return v;

@@ -14,12 +14,13 @@ public class App {
 
         var algorithm = new Minimax();
 
-        state.move(new Action(0, 0), -1);
-        state.move(algorithm.decision(state), 1);
+        state.move(algorithm.decision(new State(state.getBoard())), 1);
         state.move(new Action(1, 1), -1);
-        state.move(algorithm.decision(state), 1);
-        state.move(new Action(1, 0), -1);
-        state.move(algorithm.decision(state), 1);
+        state.move(algorithm.decision(new State(state.getBoard())), 1);
+        state.move(new Action(0, 0), -1);
+        state.move(algorithm.decision(new State(state.getBoard())), 1);
+        state.move(new Action(0, 1), -1);
+        state.move(algorithm.decision(new State(state.getBoard())), 1);
 
         state.print();
 
